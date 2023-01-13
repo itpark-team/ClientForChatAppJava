@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         ClientHandler clientHandler = new ClientHandler("127.0.0.1", 23256);
 
-        Request request = Request.builder().command("empty command").jsonData("cba").build();
+        Request request = Request.builder().command("empty").jsonData("cba").build();
 
         clientHandler.sendRequest(request);
 
