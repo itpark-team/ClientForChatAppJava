@@ -18,7 +18,7 @@ public class ClientHandler {
     private Gson gson;
 
     public ClientHandler(String ip, int port) throws Exception {
-        socket = new Socket(InetAddress.getByName("127.0.0.1"), 23256);
+        socket = new Socket(InetAddress.getByName(ip), port);
 
         this.dataInputStream = new DataInputStream(this.socket.getInputStream());
         this.dataOutputStream = new DataOutputStream(this.socket.getOutputStream());
