@@ -1,19 +1,20 @@
 package com.example;
 
+import com.example.chat.ApiWorker;
+import com.example.chat.Chat;
 import com.example.netengine.ClientHandler;
 import com.example.netmodel.Request;
 import com.example.netmodel.Response;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) throws Exception {
-        ClientHandler clientHandler = new ClientHandler("127.0.0.1", 23256);
+        ApiWorker apiWorker = new ApiWorker(new ClientHandler("127.0.0.1", 23256));
 
-        Request request = Request.builder().command("empty").jsonData("cba").build();
+        Chat chat = new Chat(apiWorker);
 
-        clientHandler.sendRequest(request);
-
-        Response response = clientHandler.getResponse();
-
-        System.out.println(response);
+        chat.authOrRegister();
+        chat.doChat();
     }
 }
