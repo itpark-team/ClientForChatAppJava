@@ -3,10 +3,6 @@ package com.example;
 import com.example.chat.ApiWorker;
 import com.example.chat.Chat;
 import com.example.netengine.ClientHandler;
-import com.example.netmodel.Request;
-import com.example.netmodel.Response;
-
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
