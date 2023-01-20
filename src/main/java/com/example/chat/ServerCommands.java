@@ -7,11 +7,11 @@ import com.example.netmodel.Request;
 import com.example.netmodel.Response;
 import com.google.gson.Gson;
 
-public class ApiWorker {
+public class ServerCommands {
     private Gson gson;
     private ClientHandler clientHandler;
 
-    public ApiWorker(ClientHandler clientHandler) {
+    public ServerCommands(ClientHandler clientHandler) {
         this.clientHandler = clientHandler;
         this.gson = new Gson();
     }
@@ -22,6 +22,19 @@ public class ApiWorker {
 
         Request request = Request.builder()
                 .command(NetCommands.AUTH_USER)
+                .jsonData(jsonData)
+                .build();
+
+        clientHandler.sendRequest(request);
+        return clientHandler.getResponse();
+    }
+
+    public Response registerUser(User registerUser) throws Exception {
+
+        String jsonData = gson.toJson(registerUser);
+
+        Request request = Request.builder()
+                .command(NetCommands.REGISTER_USER)
                 .jsonData(jsonData)
                 .build();
 
