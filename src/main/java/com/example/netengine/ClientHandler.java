@@ -10,7 +10,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class ClientHandler {
-    private Socket socket;
+    private Socket clientSocket;
 
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
@@ -18,12 +18,19 @@ public class ClientHandler {
     private Gson gson;
 
     public ClientHandler(String ip, int port) throws Exception {
-        socket = new Socket(InetAddress.getByName(ip), port);
+        clientSocket = new Socket(InetAddress.getByName(ip), port);
 
-        this.dataInputStream = new DataInputStream(this.socket.getInputStream());
-        this.dataOutputStream = new DataOutputStream(this.socket.getOutputStream());
+        this.dataInputStream = new DataInputStream(this.clientSocket.getInputStream());
+        this.dataOutputStream = new DataOutputStream(this.clientSocket.getOutputStream());
 
         this.gson = new Gson();
+    }
+
+    public void closeConnection() throws Exception {
+        dataInputStream.close();
+        dataOutputStream.close();
+
+        clientSocket.close();
     }
 
     public Response getResponse() throws Exception {

@@ -1,5 +1,6 @@
 package com.example.util;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class IOUtil {
@@ -51,7 +52,33 @@ public class IOUtil {
         return num;
     }
 
-    public static void println(String text){
+    public static long inputLong(String msg, List<Long> numbers) {
+        boolean isCorrectInput;
+        long num = 0;
+
+        do {
+            isCorrectInput = true;
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(msg);
+
+            try {
+                num = scanner.nextLong();
+                if (!numbers.contains(num)) {
+                    isCorrectInput = false;
+                    System.out.println(String.format("Ошибка. Число должно быть в массиве чисел"));
+                }
+            } catch (Exception e) {
+                isCorrectInput = false;
+                System.out.println("Ошибка. Введено не число");
+            }
+
+        } while (!isCorrectInput);
+
+        return num;
+    }
+
+    public static void println(String text) {
         System.out.println(text);
     }
 }
