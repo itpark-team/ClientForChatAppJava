@@ -81,6 +81,32 @@ public class ServerCommands {
         return clientHandler.getResponse();
     }
 
+    public Response getUncheckedMessages(User meUser) throws Exception {
+
+        String jsonData = gson.toJson(meUser);
+
+        Request request = Request.builder()
+                .command(NetCommands.GET_UNCHECKED_MESSAGES)
+                .jsonData(jsonData)
+                .build();
+
+        clientHandler.sendRequest(request);
+        return clientHandler.getResponse();
+
+    }
+
+    public Response setMessagesStatusIsOpened(User meUser) throws Exception {
+        String jsonData = gson.toJson(meUser);
+
+        Request request = Request.builder()
+                .command(NetCommands.SET_MESSAGES_STATUS_IS_OPENED)
+                .jsonData(jsonData)
+                .build();
+
+        clientHandler.sendRequest(request);
+        return clientHandler.getResponse();
+    }
+
     public void closeConnection() throws Exception {
         clientHandler.closeConnection();
     }
