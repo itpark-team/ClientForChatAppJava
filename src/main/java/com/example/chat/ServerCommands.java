@@ -1,7 +1,7 @@
 package com.example.chat;
 
-import com.example.model.Message;
-import com.example.model.User;
+import com.example.dto.message.*;
+import com.example.dto.user.*;
 import com.example.netengine.ClientHandler;
 import com.example.netengine.NetCommands;
 import com.example.netmodel.Request;
@@ -17,7 +17,7 @@ public class ServerCommands {
         this.gson = new Gson();
     }
 
-    public Response authUser(User authUser) throws Exception {
+    public Response authUser(AuthUserRequestDto authUser) throws Exception {
 
         String jsonData = gson.toJson(authUser);
 
@@ -30,7 +30,7 @@ public class ServerCommands {
         return clientHandler.getResponse();
     }
 
-    public Response registerUser(User registerUser) throws Exception {
+    public Response registerUser(RegisterUserRequestDto registerUser) throws Exception {
 
         String jsonData = gson.toJson(registerUser);
 
@@ -43,7 +43,7 @@ public class ServerCommands {
         return clientHandler.getResponse();
     }
 
-    public Response disconnectUser(User meUser) throws Exception {
+    public Response disconnectUser(DisconnectUserRequestDto meUser) throws Exception {
 
         String jsonData = gson.toJson(meUser);
 
@@ -56,7 +56,7 @@ public class ServerCommands {
         return clientHandler.getResponse();
     }
 
-    public Response getAllUsersWithoutMe(User meUser) throws Exception {
+    public Response getAllUsersWithoutMe(UsersWithoutMeRequestDto meUser) throws Exception {
         String jsonData = gson.toJson(meUser);
 
         Request request = Request.builder()
@@ -68,7 +68,7 @@ public class ServerCommands {
         return clientHandler.getResponse();
     }
 
-    public Response sendMessage(Message message) throws Exception {
+    public Response sendMessage(AddNewMessageRequestDto message) throws Exception {
 
         String jsonData = gson.toJson(message);
 
@@ -81,7 +81,7 @@ public class ServerCommands {
         return clientHandler.getResponse();
     }
 
-    public Response getUncheckedMessages(User meUser) throws Exception {
+    public Response getUncheckedMessages(GetUncheckedMessagesRequestDto meUser) throws Exception {
 
         String jsonData = gson.toJson(meUser);
 
@@ -95,7 +95,7 @@ public class ServerCommands {
 
     }
 
-    public Response setMessagesStatusIsOpened(User meUser) throws Exception {
+    public Response setMessagesStatusIsOpened(SetMessagesStatusIsOpenedRequestDto meUser) throws Exception {
         String jsonData = gson.toJson(meUser);
 
         Request request = Request.builder()
